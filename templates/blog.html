@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="icon" href="{% static 'assets/images/favicon_1.png' %}" type="image/gif" />
+
+  <title>SantKrupa Door</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet" />
+
+  <!-- lightbox Gallery-->
+  <link rel="stylesheet" href="{% static 'assets/css/ekko-lightbox.css' %}" />
+
+  <!-- font awesome style -->
+  <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- header section strats -->
+  <header class="header_section innerpage_header">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <span>
+            {{ header.website_name }}
+          </span>
+        </a>
+        <div class="" id="">
+
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                {% for link in header.navigation_links.all %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+
+  <!-- blog section -->
+
+  <section class="blog_section layout_padding">
+    <div class="container-fluid">
+      <div class="heading_container">
+        <h2>
+          Latest Blog
+        </h2>
+      </div>
+      <div class="row">
+        {% for blog in blogs %}
+          <div class="col-lg-6 ">
+            <div class="box">
+              <div class="img-box">
+                <img src="{{ blog.image.url }}" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{ blog.title }}
+                </h5>
+                <p>
+                  {{ blog.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row info_main_row">
+        <div class="col-md-6 col-lg-3">
+          <div class="info_insta">
+            <h4>
+              <a href="{% url 'index' %}" class="navbar-brand m-0 p-0">
+                <span>
+                  {{ info.company_name }}
+                </span>
+              </a>
+            </h4>
+            <p class="mb-0">
+              {{ info.company_description }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="info_detail">
+            <h4>
+              Company
+            </h4>
+            <p class="mb-0">
+              {{ info.company_description_1 }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <h4>
+            Contact Us
+          </h4>
+          <div class="info_contact">
+            <a href="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                {{ info.location }}
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call {{ info.contact_number }}
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope"></i>
+              <span>
+                {{ info.email }}
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <h4>
+            Follow Us
+          </h4>
+          <div class="social_box">
+            {% if info.facebook_link %}
+            <a href="{{ info.facebook_link }}">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+
+            {% if info.google_link %}
+            <a href="{{ info.google_link }}">
+              <i class="fa fa-google" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+
+            {% if info.linkedin_link %}
+            <a href="{{ info.linkedin_link }}">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+
+            {% if info.instagram_link %}
+            <a href="{{ info.instagram_link }}">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="{{ footer.description_1 }}">{{ footer.description }}</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+
+  <!-- jQery -->
+  <script src="{% static 'assets/js/jquery-3.4.1.min.js' %}"></script>
+  <!-- bootstrap js -->
+  <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+  <!-- custom js -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  <!-- chatbot js -->
+  <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>
